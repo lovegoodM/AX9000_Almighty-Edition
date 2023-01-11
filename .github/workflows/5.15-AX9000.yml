@@ -11,6 +11,8 @@
 name: Build 5.15-DEV-AX9000
 
 on:
+  watch:
+    types: [started]
   repository_dispatch:
   workflow_dispatch:
     inputs:
@@ -30,7 +32,7 @@ env:
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
-  UPLOAD_RELEASE: true
+  UPLOAD_RELEASE: false
   TZ: Asia/Shanghai
 
 jobs:
@@ -58,7 +60,7 @@ jobs:
       working-directory: /workdir
       run: |
         df -hT $PWD
-        git clone $REPO_URL -b $REPO_BRANCH openwrt
+        git clone --depth=1 $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Load custom feeds
@@ -84,7 +86,7 @@ jobs:
 
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
-      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+      if: (github.event.inputs.ssh == 'true') || contains(github.event.action, 'ssh')
       env:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -166,8 +168,8 @@ jobs:
         echo "IP:192.168.10.1" >> release.txt
         echo "WEB登陆账户：root" >> release.txt
         echo "密码：password" >> release.txt
-        echo "固件源码：https://github.com/robimarko/openwrt" >> release.txt
-        echo "固件内核版本：5.15" >> release.txt
+        echo "固件源码：${REPO_URL}" >> release.txt
+        echo "固件内核版本：${REPO_BRANCH}" >> release.txt
         echo "${{ env.useVersionInfo }}" >> release.txt
         echo "::set-output name=status::success"
 

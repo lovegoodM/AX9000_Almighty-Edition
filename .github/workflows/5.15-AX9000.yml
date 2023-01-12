@@ -11,8 +11,6 @@
 name: Build 5.15-DEV-AX9000
 
 on:
-  watch:
-    types: [started]
   repository_dispatch:
   workflow_dispatch:
     inputs:
@@ -20,6 +18,8 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
+  watch:
+    types: [started]
 
 env:
   REPO_URL: https://github.com/robimarko/openwrt
@@ -137,6 +137,12 @@ jobs:
       with:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
+
+    - name: Upload squashfs firmware
+      uses: actions/upload-artifact@main
+      with:
+        name: OpenWrt_squashfs_firmware
+        path: ${{ env.FIRMWARE }}/*squashfs*
 
     - name: Upload firmware to cowtransfer
       id: cowtransfer

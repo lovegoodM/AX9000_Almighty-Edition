@@ -1,0 +1,25 @@
+
+name: test_yml
+
+on:
+  watch:
+    types: [started]
+
+jobs:
+  test_jobs:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: test
+      run: |
+        echo '1' > aa_xx_bb
+        echo '2' > cc_xx_dd
+        echo '3' > ee_ff_gg
+        echo "test_dir=$PWD" >> $GITHUB_ENV
+
+    - name: test2
+      uses: actions/upload-artifact@main
+      with:
+        name: test_upload
+        path: ${{ env.test_dir }}/*xx*

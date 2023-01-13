@@ -53,4 +53,4 @@ svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-aliyundr
 svn co https://github.com/coolsnowwolf/packages/trunk/multimedia/aliyundrive-webdav $PACK_DIR/aliyundrive-webdav
 
 # 更改Meson version
-sed -i "s#61\..*\'#61\.4\'#" feeds/packages/net/ksmbd-tools/patches/020-meson.patch
+sed -i -r "s/(PKG_VERSION:=).*/\10.61.5/" tools/meson/Makefile

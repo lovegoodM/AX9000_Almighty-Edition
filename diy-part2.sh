@@ -51,3 +51,6 @@ svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-cifsd $L
 # aliyundrive-webdav
 svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-aliyundrive-webdav $LUCI_DIR/luci-app-aliyundrive-webdav
 svn co https://github.com/coolsnowwolf/packages/trunk/multimedia/aliyundrive-webdav $PACK_DIR/aliyundrive-webdav
+
+# 更改Meson version
+sed "s#61\..*\'#61\.4\'#" feeds/packages/net/ksmbd-tools/patches/020-meson.patch

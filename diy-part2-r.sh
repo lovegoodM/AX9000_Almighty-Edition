@@ -43,7 +43,7 @@ git clone --depth=1 https://github.com/riverscn/openwrt-iptvhelper.git $LUCI_DIR
 #git clone --depth=1 https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/luci-app-jd-dailybonus
 git clone --depth=1 https://github.com/kiddin9/luci-app-dnsfilter.git $LUCI_DIR/luci-app-dnsfilter
 # 添加smartdns
-rm -rf feeds/luci/applications/luci-app-smartdns
+rm -rf feeds/luci/applications/luci-app-smartdns feeds/packages/net/smartdns
 git clone --depth=1 https://github.com/pymumu/openwrt-smartdns $PACK_DIR/smartdns
 git clone --depth=1 -b lede https://github.com/pymumu/luci-app-smartdns $LUCI_DIR/luci-app-smartdns
 # 网络共享

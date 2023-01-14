@@ -9,3 +9,11 @@
 # File name: diy-part2.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
+
+LUCI_DIR='package/mj'
+PACK_DIR='package/mj'
+ln -s ../feeds/luci/luci.mk package/luci.mk
+
+# 修复ksmbd编译出错
+rm -rf package/kernel/ksmbd
+svn co https://github.com/coolsnowwolf/lede/trunk/package/kernel/ksmbd $PACK_DIR/ksmbd

@@ -53,4 +53,8 @@ svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-aliyundr
 svn co https://github.com/coolsnowwolf/packages/trunk/multimedia/aliyundrive-webdav $PACK_DIR/aliyundrive-webdav
 
 # 更改Meson version
-sed -i -r -e "s/(PKG_VERSION:=).*/\10.61.5/" -e 's/(PKG_HASH:=).*/\1skip/' tools/meson/Makefile
+sed -i -r -e 's/(PKG_VERSION:=).*/\10.61.5/' -e 's/(PKG_HASH:=).*/\1skip/' tools/meson/Makefile
+
+# 修复iwinfo编译出错
+sed -i -r -e "s/(PKG_SOURCE_DATE:=).*/\12023-01-10/" -e "s/(PKG_SOURCE_VERSION:=).*/\1fac0787ab007243d7dc51948bd06eceea7299bba/" \
+-e "/PKG_MIRROR_HASH/d" package/network/utils/iwinfo/Makefile

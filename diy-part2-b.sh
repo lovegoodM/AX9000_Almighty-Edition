@@ -17,3 +17,9 @@ ln -s ../feeds/luci/luci.mk package/luci.mk
 # 修复ksmbd编译出错
 rm -rf package/kernel/ksmbd
 svn co https://github.com/coolsnowwolf/lede/trunk/package/kernel/ksmbd $PACK_DIR/ksmbd
+
+# 修复qca编译出错
+rm -rf package/qca/nss/qca-ssdk package/qca/nss/qca-nss-dp
+svn co https://github.com/robimarko/openwrt/branches/ipq807x-5.15-pr/package/kernel/qca-ssdk $PACK_DIR/qca-ssdk
+svn co https://github.com/robimarko/openwrt/branches/ipq807x-5.15-pr/package/kernel/qca-nss-dp $PACK_DIR/qca-nss-dp
+

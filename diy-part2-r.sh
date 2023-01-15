@@ -52,9 +52,11 @@ svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-cifsd $L
 svn co https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-aliyundrive-webdav $LUCI_DIR/luci-app-aliyundrive-webdav
 svn co https://github.com/coolsnowwolf/packages/trunk/multimedia/aliyundrive-webdav $PACK_DIR/aliyundrive-webdav
 
-# 更改Meson version
+# 更改Meson version导致编译出错
 sed -i -r -e 's/(PKG_VERSION:=).*/\10.61.5/' -e 's/(PKG_HASH:=).*/\1skip/' tools/meson/Makefile
 
-# 修复iwinfo编译出错
+# 修复rpcd相关导致编译出错
 sed -i -r -e "s/(PKG_SOURCE_DATE:=).*/\12023-01-10/" -e "s/(PKG_SOURCE_VERSION:=).*/\1fac0787ab007243d7dc51948bd06eceea7299bba/" \
 -e "/PKG_MIRROR_HASH/d" package/network/utils/iwinfo/Makefile
+sed -i -r -e "s/(PKG_SOURCE_DATE:=).*/\12022-12-16/" -e "s/(PKG_SOURCE_VERSION:=).*/\17de4820c87437033f6b7716018f3bfa60a3f7b12/" \
+-e "/PKG_MIRROR_HASH/d" package/system/rpcd/Makefile

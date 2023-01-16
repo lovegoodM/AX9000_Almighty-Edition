@@ -23,3 +23,5 @@ rm -rf package/qca/nss/qca-ssdk package/qca/nss/qca-nss-dp
 svn co https://github.com/robimarko/openwrt/branches/ipq807x-5.15-pr/package/kernel/qca-ssdk $PACK_DIR/qca-ssdk
 svn co https://github.com/robimarko/openwrt/branches/ipq807x-5.15-pr/package/kernel/qca-nss-dp $PACK_DIR/qca-nss-dp
 
+# 修复luci-base和luci-lib-ipkg文件重复
+rm -rf feeds/luci/modules/luci-base/luasrc/model/*ipkg*

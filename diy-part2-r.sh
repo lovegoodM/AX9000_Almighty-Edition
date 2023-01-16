@@ -56,7 +56,7 @@ svn co https://github.com/coolsnowwolf/packages/trunk/multimedia/aliyundrive-web
 sed -i -r -e 's/(PKG_VERSION:=).*/\10.61.5/' -e 's/(PKG_HASH:=).*/\1skip/' tools/meson/Makefile
 
 # 修复rpcd相关导致编译出错
-rm -rf package/network/utils/iwinfo package/system/rpcd
+rm -rf package/network/utils/iwinfo package/system/rpcd package/utils/ucode
 svn co https://github.com/robimarko/openwrt/trunk/package/network/utils/iwinfo $PACK_DIR/iwinfo
 svn co https://github.com/robimarko/openwrt/trunk/package/system/rpcd $PACK_DIR/rpcd
-
+svn co https://github.com/robimarko/openwrt/trunk/package/utils/ucode $PACK_DIR/ucode

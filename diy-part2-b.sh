@@ -25,3 +25,4 @@ svn co https://github.com/robimarko/openwrt/branches/ipq807x-5.15-pr/package/ker
 
 # 修复luci-base和luci-lib-ipkg文件重复
 rm -rf feeds/luci/modules/luci-base/luasrc/model/*ipkg*
+
